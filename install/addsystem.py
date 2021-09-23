@@ -14,12 +14,15 @@ def addbashrc():
     """
     Add program to the .bashrc
     """
-    shell = os.environ["SHELL"]
-    if "bash" in shell: shellrc = ".bashrc"
-    elif "zsh" in shell: shellrc = ".zshrc"
-    else:
-        print("Unrecognise shell",name)
-        exit()
+    try:
+        shell = os.environ["SHELL"]
+        if "bash" in shell: shellrc = ".bashrc"
+        elif "zsh" in shell: shellrc = ".zshrc"
+        else:
+            print("Unrecognise shell",name)
+            exit()
+    except Exception:
+        shellrc = ".bashrc"
     pwd = os.path.dirname(os.path.realpath(__file__))+"/../" 
     if platform.system()=="Linux":
       shellrc = os.environ["HOME"]+"/"+shellrc # path to .bashrc
